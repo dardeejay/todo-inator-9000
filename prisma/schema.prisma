@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id       Int       @id @default(autoincrement())
+  task     String
+  isDone   Boolean   @default(false)
+  dueDate  DateTime?
+  priority Priority?
+
+  parentId Int?
+  parent   Task?  @relation("Subtasks", fields: [parentId], references: [id])
+  subtasks Task[] @relation("Subtasks")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Priority {
+  low
+  medium
+  high
+}
