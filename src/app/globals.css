@@ -41,6 +41,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  --color-custom-black: #222831;
+  --color-custom-secondary-black: #31363F;
+  --color-custom-light-grey: #76ABAE;
+  --color-custom-dark-white: #EEEEEE;
 }
 
 :root {
@@ -119,4 +124,9 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+.navbar-buttons { 
+  @apply p-2 rounded-lg hover:bg-custom-dark-white/10 transition cursor-pointer;
 }
